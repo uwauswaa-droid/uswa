@@ -55,9 +55,15 @@ const projects = [
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="py-24 bg-black text-white">
+    <section
+      id="projects"
+      className="relative py-28 px-4 bg-gradient-to-br from-black via-purple-900 to-black text-white overflow-hidden"
+    >
 
-      <div className="container mx-auto px-4">
+      {/* BACKGROUND GLOW */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-pink-500/20 blur-3xl rounded-full" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
 
         {/* TITLE */}
         <motion.div
@@ -65,55 +71,62 @@ export default function ProjectsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           className="text-center mb-20"
         >
-          <p className="text-gray-500 mb-2 tracking-widest text-sm">
+          <p className="text-gray-400 mb-2 tracking-widest text-sm">
             MY WORK
           </p>
 
-          <h2 className="text-4xl md:text-5xl font-bold">
+          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
             Selected Projects
           </h2>
 
-          <div className="w-16 h-[2px] bg-white/30 mx-auto mt-4" />
+          <p className="text-gray-500 mt-4 max-w-xl mx-auto">
+            Kumpulan project yang mencerminkan proses belajar, eksplorasi, dan pengembangan skill saya.
+          </p>
         </motion.div>
 
         {/* GRID */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
           {projects.map((project, index) => (
-
             <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
+              className="group"
             >
 
-              <div className="group relative h-full p-6 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition duration-300">
+              <div className="relative h-full p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md hover:-translate-y-2 hover:border-pink-400/40 transition-all duration-300 overflow-hidden">
 
-                {/* glow effect */}
-                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition blur-xl bg-white/5" />
+                {/* HOVER GLOW */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-gradient-to-r from-pink-500/10 to-purple-500/10" />
 
-                {/* CONTENT */}
                 <div className="relative z-10">
 
                   {/* ICON */}
-                  <div className="flex items-center justify-center h-24 mb-4 text-5xl border border-white/10 rounded-xl bg-black">
+                  <div className="flex items-center justify-center h-28 mb-4 text-5xl border border-white/10 rounded-xl bg-black/40 group-hover:scale-105 transition">
                     {project.image}
                   </div>
 
-                  {/* TITLE */}
+                  {/* TITLE + STATUS */}
                   <div className="flex justify-between items-center mb-2">
                     <h3 className="font-semibold text-lg">
                       {project.title}
                     </h3>
 
-                    <span className="text-xs text-gray-400 border border-white/10 px-2 py-1 rounded-full">
+                    <span className={`text-xs px-2 py-1 rounded-full border ${
+                      project.status === 'Done'
+                        ? 'bg-green-500/10 border-green-400/30 text-green-300'
+                        : project.status === 'Learning'
+                        ? 'bg-yellow-500/10 border-yellow-400/30 text-yellow-300'
+                        : 'bg-purple-500/10 border-purple-400/30 text-purple-300'
+                    }`}>
                       {project.status}
                     </span>
                   </div>
 
                   {/* DESC */}
-                  <p className="text-sm text-gray-400 mb-4">
+                  <p className="text-sm text-gray-400 mb-4 leading-relaxed">
                     {project.description}
                   </p>
 
@@ -149,7 +162,7 @@ export default function ProjectsSection() {
                     {project.demo && (
                       <Button
                         size="sm"
-                        className="rounded-full bg-white text-black hover:bg-gray-200"
+                        className="rounded-full bg-gradient-to-r from-pink-500 to-purple-500 hover:opacity-90"
                         asChild
                       >
                         <a href={project.demo}>
@@ -166,7 +179,6 @@ export default function ProjectsSection() {
               </div>
 
             </motion.div>
-
           ))}
 
         </div>
