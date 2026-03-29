@@ -19,13 +19,13 @@ const contactInfo = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'farizi6772@gmail.com',
-    href: 'mailto:emailkamu@gmail.com',
+    value: 'uwauswaa@gmail.com',
+    href: 'mailto:uwauswaa@gmail.com',
   },
   {
     icon: MapPin,
     label: 'Lokasi',
-    value: 'Banda Aceh, Indonesia',
+    value: 'ule kareng,banda aceh,aceh,Indonesia',
     href: '#',
   },
 ];
@@ -74,7 +74,7 @@ export default function ContactSection() {
 
       toast({
         title: 'Pesan Terkirim 🚀',
-        description: 'Terima kasih! Saya akan membalas secepat mungkin.',
+        description: 'okeeee naaciwww.',
       });
 
       setFormData({ name: '', email: '', subject: '', message: '' });

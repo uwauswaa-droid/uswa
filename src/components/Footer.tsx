@@ -22,7 +22,7 @@ export default function Footer() {
             whileInView={{ opacity: 1 }}
             className="text-gray-400 text-sm text-center md:text-left"
           >
-            © {currentYear} Muhammad Alfarizi Herdiawan  
+            © {currentYear} Cut Hayatul Uswani 
             <br className="md:hidden" />
             <span className="text-gray-500"> — Built with passion 💻</span>
           </motion.div>
