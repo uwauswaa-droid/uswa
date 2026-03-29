@@ -120,9 +120,10 @@ export default function ContactSection() {
               </h3>
 
               <p className="text-gray-400 leading-relaxed">
-                Saya terbuka untuk diskusi, kolaborasi, atau sekadar berbagi
-                tentang dunia teknologi dan programming. Jangan ragu untuk
-                menghubungi saya.
+                tanya aja bebas
+                
+            
+            
               </p>
             </div>
 
