@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 
-export function AccordionSection() {
-  const [active, setActive] = useState(null);
+export default function AccordionSection() {
+  const [active, setActive] = useState<number | null>(null);
 
   const items = [
     {
@@ -23,12 +23,13 @@ export function AccordionSection() {
     },
   ];
 
-  const toggle = (index) => {
+  const toggle = (index: number) => {
     setActive(active === index ? null : index);
   };
 
   return (
     <section className="py-28 px-4 max-w-5xl mx-auto text-white">
+      
       {/* HEADER */}
       <div className="text-center mb-20">
         <p className="text-sm text-gray-500 tracking-widest mb-2">
@@ -46,7 +47,8 @@ export function AccordionSection() {
             key={i}
             className="relative border border-white/10 rounded-2xl overflow-hidden bg-white/5 backdrop-blur-md"
           >
-            {/* CLICK AREA */}
+            
+            {/* BUTTON */}
             <button
               onClick={() => toggle(i)}
               className="w-full flex justify-between items-center p-6 text-left"
@@ -78,7 +80,7 @@ export function AccordionSection() {
               )}
             </AnimatePresence>
 
-            {/* GLOW EFFECT */}
+            {/* GLOW */}
             <div className="absolute inset-0 opacity-0 hover:opacity-100 transition bg-gradient-to-r from-pink-500/10 to-purple-500/10 pointer-events-none" />
           </div>
         ))}
