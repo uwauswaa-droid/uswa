@@ -24,17 +24,29 @@ export default function CertificatesSection() {
   ];
 
   return (
-    <section id="certificates" className="py-28 px-4 text-white">
-      <div className="max-w-6xl mx-auto">
+    <section
+      id="certificates"
+      className="relative py-28 px-4 bg-gradient-to-br from-black via-purple-900 to-black text-white overflow-hidden"
+    >
+
+      {/* GLOW BACKGROUND */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-pink-500/20 blur-3xl rounded-full" />
+
+      <div className="max-w-6xl mx-auto relative z-10">
 
         {/* HEADER */}
         <div className="text-center mb-16">
-          <p className="text-sm text-gray-500 tracking-widest mb-2">
+          <p className="text-sm text-gray-400 tracking-widest mb-2">
             ACHIEVEMENT
           </p>
+
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
-            Sertifikat Saya
+            Sertifikat & Pencapaian
           </h2>
+
+          <p className="text-gray-500 mt-4 max-w-xl mx-auto">
+            Beberapa sertifikat yang saya peroleh sebagai bagian dari proses belajar dan pengembangan diri.
+          </p>
         </div>
 
         {/* GRID */}
@@ -45,13 +57,13 @@ export default function CertificatesSection() {
               key={i}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.2 }}
+              transition={{ delay: i * 0.15 }}
               viewport={{ once: true }}
-              className="group relative p-6 rounded-2xl bg-white/5 backdrop-blur-lg border border-white/10 hover:border-pink-400/40 transition-all duration-300"
+              className="group relative p-6 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-pink-400/40 hover:-translate-y-2 transition-all duration-300 overflow-hidden"
             >
 
               {/* ICON */}
-              <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-br from-pink-500 to-purple-500 mb-4">
+              <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-br from-pink-500 to-purple-500 mb-4 shadow-lg shadow-pink-500/20">
                 <Award className="text-white" />
               </div>
 
@@ -70,14 +82,14 @@ export default function CertificatesSection() {
                 <a
                   href={item.link}
                   target="_blank"
-                  className="flex items-center gap-1 hover:text-white transition"
+                  className="flex items-center gap-1 hover:text-pink-300 transition"
                 >
                   Lihat
                   <ExternalLink size={14} />
                 </a>
               </div>
 
-              {/* GLOW */}
+              {/* HOVER GLOW */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-gradient-to-r from-pink-500/10 to-purple-500/10 rounded-2xl pointer-events-none" />
 
             </motion.div>
