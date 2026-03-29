@@ -20,13 +20,11 @@ const contactInfo = [
     icon: Mail,
     label: 'Email',
     value: 'uwauswaa@gmail.com',
-    href: 'mailto:uwauswaa@gmail.com',
   },
   {
     icon: MapPin,
     label: 'Lokasi',
-    value: 'ule kareng,banda aceh,aceh,Indonesia',
-    href: '#',
+    value: 'Ulee Kareng, Banda Aceh, Indonesia',
   },
 ];
 
@@ -37,13 +35,16 @@ export default function ContactSection() {
     subject: '',
     message: '',
   });
-  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setFormData((prev) => ({ ...prev, [name]: value }));
+
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: '' }));
     }
@@ -54,6 +55,7 @@ export default function ContactSection() {
     setErrors({});
 
     const result = contactSchema.safeParse(formData);
+
     if (!result.success) {
       const fieldErrors = {};
       result.error.errors.forEach((err) => {
@@ -74,7 +76,7 @@ export default function ContactSection() {
 
       toast({
         title: 'Pesan Terkirim 🚀',
-        description: 'okeeee naaciwww.',
+        description: 'Terima kasih! Aku akan segera membalas.',
       });
 
       setFormData({ name: '', email: '', subject: '', message: '' });
@@ -90,50 +92,52 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-32 bg-black text-white">
-      <div className="container mx-auto px-4">
+    <section
+      id="contact"
+      className="relative py-28 px-4 bg-gradient-to-br from-black via-purple-900 to-black text-white overflow-hidden"
+    >
+      {/* Glow Background */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-pink-500/20 blur-3xl rounded-full" />
 
+      <div className="max-w-6xl mx-auto relative z-10">
+
+        {/* HEADER */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <span className="text-gray-400 block mb-2">
-            Contact
-          </span>
+          <p className="text-sm text-gray-400 mb-2 tracking-widest">
+            CONTACT
+          </p>
 
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            Hubungi Saya
+          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
+            Mari Terhubung
           </h2>
-
-          <div className="w-20 h-1 bg-white/30 mx-auto rounded-full" />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-12">
 
-          {/* Info */}
+          {/* LEFT */}
           <motion.div className="space-y-8">
-
             <div>
               <h3 className="text-2xl font-bold mb-4">
-                Mari Terhubung 🚀
+                Punya ide? ngobrol aja ✨
               </h3>
 
               <p className="text-gray-400 leading-relaxed">
-                tanya aja bebas
-                
-            
-            
+                Kalau kamu punya pertanyaan, ide project, atau sekadar ingin ngobrol soal coding,
+                jangan ragu untuk kirim pesan. Aku selalu terbuka untuk hal baru 🚀
               </p>
             </div>
 
             <div className="space-y-4">
-              {contactInfo.map((info) => (
+              {contactInfo.map((info, i) => (
                 <div
-                  key={info.label}
-                  className="flex items-center gap-4 p-4 bg-white/5 border border-white/10 rounded-xl"
+                  key={i}
+                  className="flex items-center gap-4 p-4 bg-white/5 border border-white/10 rounded-xl backdrop-blur-md"
                 >
-                  <info.icon className="h-5 w-5 text-white/70" />
+                  <info.icon className="h-5 w-5 text-pink-400" />
                   <div>
                     <p className="text-sm text-gray-500">{info.label}</p>
                     <p>{info.value}</p>
@@ -141,12 +145,14 @@ export default function ContactSection() {
                 </div>
               ))}
             </div>
-
           </motion.div>
 
-          {/* Form */}
+          {/* RIGHT (FORM) */}
           <motion.div>
-            <form onSubmit={handleSubmit} className="space-y-6 p-6 bg-white/5 border border-white/10 rounded-2xl">
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-6 p-6 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md"
+            >
 
               <div className="grid sm:grid-cols-2 gap-4">
                 <Input name="name" placeholder="Nama" value={formData.name} onChange={handleChange} />
@@ -159,7 +165,7 @@ export default function ContactSection() {
 
               <Button
                 type="submit"
-                className="w-full rounded-full bg-white text-black hover:bg-gray-200"
+                className="w-full rounded-full bg-gradient-to-r from-pink-500 to-purple-500 hover:opacity-90"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (
