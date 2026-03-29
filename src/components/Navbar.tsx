@@ -41,23 +41,23 @@ export default function Navbar({ isDark, toggleTheme }) {
           : 'bg-transparent'
       }`}
     >
-      <div className="container mx-auto px-4">
+      <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
 
-          {/* Logo */}
+          {/* LOGO */}
           <motion.a
             href="#home"
             onClick={(e) => {
               e.preventDefault();
               scrollToSection('#home');
             }}
-            className="text-lg md:text-2xl font-bold text-white tracking-wide"
+            className="text-lg md:text-2xl font-bold tracking-wide bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent"
             whileHover={{ scale: 1.05 }}
           >
-            Alfarizi.dev
+            Cut.dev
           </motion.a>
 
-          {/* Desktop */}
+          {/* DESKTOP MENU */}
           <div className="hidden md:flex items-center gap-8">
 
             {navItems.map((item) => (
@@ -68,19 +68,22 @@ export default function Navbar({ isDark, toggleTheme }) {
                   e.preventDefault();
                   scrollToSection(item.href);
                 }}
-                className="text-gray-400 hover:text-white transition-colors font-medium cursor-pointer"
+                className="relative text-gray-400 hover:text-white transition-colors font-medium cursor-pointer"
                 whileHover={{ y: -2 }}
               >
                 {item.label}
+
+                {/* underline glow */}
+                <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-gradient-to-r from-pink-400 to-purple-400 transition-all group-hover:w-full" />
               </motion.a>
             ))}
 
-            {/* Theme */}
+            {/* THEME TOGGLE */}
             <Button
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="rounded-full"
+              className="rounded-full bg-white/5 hover:bg-white/10 border border-white/10"
             >
               <AnimatePresence mode="wait">
                 {isDark ? (
@@ -90,7 +93,7 @@ export default function Navbar({ isDark, toggleTheme }) {
                     animate={{ rotate: 0, opacity: 1 }}
                     exit={{ rotate: 90, opacity: 0 }}
                   >
-                    <Sun className="h-5 w-5 text-white" />
+                    <Sun className="h-5 w-5 text-pink-400" />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -99,7 +102,7 @@ export default function Navbar({ isDark, toggleTheme }) {
                     animate={{ rotate: 0, opacity: 1 }}
                     exit={{ rotate: -90, opacity: 0 }}
                   >
-                    <Moon className="h-5 w-5 text-white" />
+                    <Moon className="h-5 w-5 text-purple-400" />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -107,19 +110,19 @@ export default function Navbar({ isDark, toggleTheme }) {
 
           </div>
 
-          {/* Mobile */}
+          {/* MOBILE */}
           <div className="flex items-center gap-2 md:hidden">
 
             <Button
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="rounded-full"
+              className="rounded-full bg-white/5 border border-white/10"
             >
               {isDark ? (
-                <Sun className="h-5 w-5 text-white" />
+                <Sun className="h-5 w-5 text-pink-400" />
               ) : (
-                <Moon className="h-5 w-5 text-white" />
+                <Moon className="h-5 w-5 text-purple-400" />
               )}
             </Button>
 
@@ -127,6 +130,7 @@ export default function Navbar({ isDark, toggleTheme }) {
               variant="ghost"
               size="icon"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="bg-white/5 border border-white/10"
             >
               {isMobileMenuOpen ? (
                 <X className="h-5 w-5 text-white" />
@@ -140,7 +144,7 @@ export default function Navbar({ isDark, toggleTheme }) {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* MOBILE MENU */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -149,7 +153,7 @@ export default function Navbar({ isDark, toggleTheme }) {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-black/90 backdrop-blur-xl border-t border-white/10"
           >
-            <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
+            <div className="px-4 py-6 flex flex-col gap-4 text-center">
 
               {navItems.map((item) => (
                 <a
@@ -159,7 +163,7 @@ export default function Navbar({ isDark, toggleTheme }) {
                     e.preventDefault();
                     scrollToSection(item.href);
                   }}
-                  className="text-gray-400 hover:text-white transition-colors font-medium py-2"
+                  className="text-gray-400 hover:text-white transition text-lg"
                 >
                   {item.label}
                 </a>
